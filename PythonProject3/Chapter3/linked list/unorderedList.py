@@ -4,7 +4,7 @@ explicit references. As long as we know where to find the first node, each item 
 be found by successively following the next links.
 The UnorderedList class must maintain a reference to the first node.
 """
-import Node
+import node
 
 class UnorderedList:
     def __init__(self):
@@ -23,7 +23,7 @@ class UnorderedList:
     2. Modify the head of the list to refer to the new node. 
     """
     def add(self, item):
-        temp = Node.Node(item)
+        temp = node.Node(item)
         temp.set_next(self.head)
         self.head = temp
 
@@ -68,3 +68,20 @@ class UnorderedList:
     one node behind current. For this reason, previous starts out with a value of None, since there is
     no node before the head. 
     """
+    def remove(self, item):
+        current = self.head
+        previous = None
+        while current is not None:
+            if current.data == item:
+                break
+            previous = current
+            current = current.next
+        if current is None:
+            """special case where item is not in the list, current traverses to the end of the list."""
+            raise ValueError("The item you are looking for is not in the list")
+        if previous is None:
+            """special case where the item to be removed is the head of the list (current is head, previous is None). Then point the
+            head of the list to the next node after the current node."""
+            self.head = current.next
+        else:
+            previous.next = current.next
