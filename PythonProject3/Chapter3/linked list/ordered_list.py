@@ -63,4 +63,31 @@ class OrderedList:
     until we either find the item we are looking for or run out of nodes (None). However, in the
     case where the item is not in the list, we can take advantage of the ordering to stop the search
     as soon as current.data is greater than item."""
-    def search(self):
+    def search(self, item):
+        current = self.head
+
+        while current.next is not None:
+            if current.data == item:
+                return True
+            if current.data > item:
+                return False
+            current = current.next
+        return False
+
+    def add(self, item):
+        """add a new node"""
+        current = self.head
+        previous = None
+        temp = node.Node(item)
+
+        while current is not None and current.data < item:
+            previous = current
+            current = current.next
+        if previous is None:
+            temp.next = self.head
+            self.head = temp
+        else:
+            temp.next = current
+            previous.next = temp
+
+
