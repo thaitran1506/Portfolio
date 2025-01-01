@@ -62,3 +62,12 @@ class Maze:
         self.x_translate = -self.columns_in_maze / 2
         self.y_translate = self.rows_in_maze / 2
         self.t = turtle.Turtle()
+        self.t.shape("turtle")
+        self.wn = turtle.Screen()
+        self.wn.setworldcoordinates(
+            -(self.columns_in_maze - 1) / 2 - 0.5,
+        -(self.rows_in_maze - 1) / 2 - 0.5,
+            (self.columns_in_maze - 1) / 2 + 0.5,
+        (self.rows_in_maze - 1) / 2 + 0.5)
+
+        
